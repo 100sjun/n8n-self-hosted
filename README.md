@@ -70,3 +70,44 @@ Want to shape the future of automation? Check out our [job posts](https://n8n.io
 **Short answer:** It means "nodemation" and is pronounced as n-eight-n.
 
 **Long answer:** "I get that question quite often (more often than I expected) so I decided it is probably best to answer it here. While looking for a good name for the project with a free domain I realized very quickly that all the good ones I could think of were already taken. So, in the end, I chose nodemation. 'node-' in the sense that it uses a Node-View and that it uses Node.js and '-mation' for 'automation' which is what the project is supposed to help with. However, I did not like how long the name was and I could not imagine writing something that long every time in the CLI. That is when I then ended up on 'n8n'." - **Jan Oberhauser, Founder and CEO, n8n.io**
+
+## Puppeteer 사용 방법
+
+이 n8n 배포에는 Puppeteer가 설치되어 있습니다. Puppeteer는 웹 스크래핑, PDF 생성, 자동화된 UI 테스트 등을 수행할 수 있는 Node.js 라이브러리입니다.
+
+### Render에서 배포하기
+
+1. Render 계정에 로그인합니다.
+2. "New +" 버튼을 클릭하고 "Web Service"를 선택합니다.
+3. 이 저장소를 연결합니다.
+4. 환경 변수를 설정합니다 (데이터베이스 연결 정보 등).
+5. "Create Web Service"를 클릭합니다.
+
+### Puppeteer를 사용하는 코드 노드 예제
+
+```javascript
+// 코드 노드에서 Puppeteer 사용 예:
+const puppeteer = require('puppeteer');
+
+async function execute() {
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+  
+  const page = await browser.newPage();
+  await page.goto('https://example.com');
+  
+  // 페이지 내용 가져오기
+  const content = await page.content();
+  
+  // 스크린샷 찍기
+  await page.screenshot({ path: '/tmp/screenshot.png' });
+  
+  await browser.close();
+  
+  return { content };
+}
+
+return execute();
+```

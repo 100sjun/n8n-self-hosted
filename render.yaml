@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /
+    envVars:
+      - key: N8N_HOST
+        fromService:
+          name: n8n
+          type: web
+          property: host
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_PROTOCOL
+        value: https
+      - key: NODE_ENV
+        value: production
+      # 데이터베이스 환경 변수는 Render 대시보드에서 설정하세요
+      # - key: DB_TYPE
+      #   value: postgresdb
+      # - key: DB_POSTGRESDB_HOST
+      #   value: your-postgres-host
+      # - key: DB_POSTGRESDB_PORT
+      #   value: '5432'
+      # - key: DB_POSTGRESDB_DATABASE
+      #   value: n8n
+      # - key: DB_POSTGRESDB_USER
+      #   value: n8n-user
+      # - key: DB_POSTGRESDB_PASSWORD
+      #   value: your-password

@@ -3,6 +3,7 @@
 .cache
 assets
 node_modules
+npm-debug.log
 packages/node-dev
 packages/**/node_modules
 packages/**/dist
