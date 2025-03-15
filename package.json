@@ -51,7 +51,6 @@
     "@types/jest": "^29.5.3",
     "@types/node": "*",
     "@types/supertest": "^6.0.2",
-    "@anpigon/n8n-nodes-youtube-transcript": "^0.1.9",
     "cross-env": "^7.0.3",
     "jest": "^29.6.2",
     "jest-environment-jsdom": "^29.6.2",
